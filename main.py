@@ -61,7 +61,7 @@ def main():
     entry = ttk.Entry(labelframe, width=25, justify='c')
     entry.grid(row=1, column=1)
 
-    button = ttk.Button(labelframe, text="Submit", command=lambda: greeting.config(text=f"Hello, {entry.get().title()   }!"))
+    button = ttk.Button(labelframe, text="Submit", command=lambda: greeting.config(text=f"Hello, {entry.get().title()}!"))
     button.grid(row=1, column=2, padx=(0, 5))
 
     handle_frame.bind('<B1-Motion>', move_window)
