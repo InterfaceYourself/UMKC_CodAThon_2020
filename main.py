@@ -3,11 +3,11 @@ import ttkthemes
 
 
 def main():
+    root = ttkthemes.ThemedTk(theme='black')
 
     def move_window(event):
         root.geometry(f'+{event.x_root}+{event.y_root}')
 
-    root = ttkthemes.ThemedTk(theme='black')
     root.overrideredirect(True)  # removes the window bar
 
     x = (root.winfo_screenwidth() - root.winfo_width()) // 2
