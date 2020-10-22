@@ -35,7 +35,7 @@ def main():
     handle_frame = ttk.Frame(core_frame, relief='raised')  # recreates the top bar
     handle_frame.pack(fill='x', expand=True)
 
-    app_logo = PhotoImage(file='logo.gif')
+    app_logo = PhotoImage(file='assets/img/logo.gif')
     app_logo = app_logo.zoom(8)  # resize the image
     app_logo = app_logo.subsample(32)  # resample the image
 
@@ -67,6 +67,7 @@ def main():
     handle_frame.bind('<B1-Motion>', move_window)
     handle_frame_logo.bind('<B1-Motion>', move_window)
     app_title.bind('<B1-Motion>', move_window)
+
 
     root.mainloop()
 
