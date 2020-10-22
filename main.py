@@ -2,6 +2,22 @@ from tkinter import ttk, PhotoImage
 import ttkthemes
 
 
+class Centerer:
+    def __init__(self, root):
+        self.root = root
+        self.callback_id = None
+
+    def set_callback(self):
+        self.root.bind('<Visibility>', self.center)
+
+    def center(self, event):
+        x = (self.root.winfo_screenwidth() - self.root.winfo_width()) // 2
+        y = (self.root.winfo_screenheight() - self.root.winfo_height()) // 2
+        self.root.geometry(f"+{x}+{y}")
+
+        self.root.unbind('<Visibility>')
+
+
 def main():
     root = ttkthemes.ThemedTk(theme='black')
 
@@ -10,9 +26,8 @@ def main():
 
     root.overrideredirect(True)  # removes the window bar
 
-    x = (root.winfo_screenwidth() - root.winfo_width()) // 2
-    y = (root.winfo_screenheight() - root.winfo_height()) // 2
-    root.geometry(f"+{x}+{y}")
+    centerer = Centerer(root)
+    centerer.set_callback()
 
     core_frame = ttk.Frame(root, relief='ridge', border=1)
     core_frame.pack()
