@@ -68,7 +68,6 @@ def main():
     handle_frame_logo.bind('<B1-Motion>', move_window)
     app_title.bind('<B1-Motion>', move_window)
 
-
     root.mainloop()
 
 
