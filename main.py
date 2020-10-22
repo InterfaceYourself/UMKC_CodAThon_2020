@@ -10,13 +10,9 @@ def main():
     root = ttkthemes.ThemedTk(theme='black')
     root.overrideredirect(True)  # removes the window bar
 
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-
-    size = tuple(int(_) for _ in root.geometry().split('+')[0].split('x'))
-    x = (screen_width / 2 - size[0] / 2)
-    y = (screen_height / 2 - size[1] / 2)
-    root.geometry("+%d+%d" % (x, y))
+    x = (root.winfo_screenwidth() - root.winfo_width()) // 2
+    y = (root.winfo_screenheight() - root.winfo_height()) // 2
+    root.geometry(f"+{x}+{y}")
 
     core_frame = ttk.Frame(root, relief='ridge', border=1)
     core_frame.pack()
