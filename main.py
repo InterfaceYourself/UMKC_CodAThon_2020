@@ -24,6 +24,7 @@ class Centerer:
 
 def main():
     def move_window(event):
+        """moves the window if mouse button one is held on the top bar"""
         root.geometry(f'+{event.x_root}+{event.y_root}')
 
     # Create the root window give it a name and set its theme
@@ -41,6 +42,7 @@ def main():
     elif platform.system() == 'Windows':
         print('Windows detected +5 to bonus rolls')
 
+    # ---
     centerer = Centerer(root)
     centerer.set_callback()
 
@@ -49,11 +51,11 @@ def main():
     master_container.pack()
 
     # but it gives it a nice look
-    root_containter = ttk.Frame(master_container)
-    root_containter.pack(fill='x', expand=True)
+    root_container = ttk.Frame(master_container)
+    root_container.pack(fill='x', expand=True)
 
     # recreates the top bar
-    handle_frame = ttk.Frame(root_containter, relief='raised')
+    handle_frame = ttk.Frame(root_container, relief='raised')
     handle_frame.pack(fill='x', expand=True)
 
     # Que up and resize the logo
@@ -78,7 +80,7 @@ def main():
     close_button.pack(side='right')
 
     # ---
-    tab_controller = ttk.Notebook(root_containter)
+    tab_controller = ttk.Notebook(root_container)
     tab_controller.pack(expand=True, fill='both')
 
     # ---
@@ -90,7 +92,7 @@ def main():
     other_tab_label2.pack()
 
     # ---
-    greeter_widget = GreeterWidget(tab_controller)
+    greeter_widget = GreeterWidget(tab_controller, root)
     greeter_widget.create()
 
     # ---
@@ -100,13 +102,17 @@ def main():
 
     # display a status bar at the bottom of the window
     status_bar = ttk.Frame(master_container, relief='sunken')
-    status_bar.pack(fill='both', expand=True)
+    status_bar.pack(side='bottom', fill='both', expand=True)
 
     # Label for current day for status bar
-    date_label = ttk.Label(status_bar, text=str(datetime.datetime.today()).split(' ')[0])
-    date_label.pack(side='right', pady=2, padx=2)
+    status_label_date = ttk.Label(status_bar, text=str(datetime.datetime.today()).split(' ')[0])
+    status_label_date.pack(side='right', pady=2, padx=2)
 
-    # bindings to allow the movement of the window with the custom topbar
+    # Label for whoever is logged in
+    status_label_name = ttk.Label(status_bar, text=greeter_widget.user_name)
+    status_label_name.pack(side='left', pady=2, padx=2)
+
+    # bindings to allow the movement of the window with the custom top bar
     handle_frame.bind('<B1-Motion>', move_window)
     handle_frame_logo.bind('<B1-Motion>', move_window)
     app_title.bind('<B1-Motion>', move_window)

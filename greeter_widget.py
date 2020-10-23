@@ -2,16 +2,19 @@ from tkinter import ttk, PhotoImage
 
 
 class GreeterWidget:
-    def __init__(self, parent):
+    def __init__(self, parent, root):
+        self.root = root
         self.parent = parent
         self.core_frame = None
         self.labelframe = None
+        self.logo = None
         self.greeting = None
         self.prompt = None
         self.entry = None
         self.button = None
         self.password_prompt = None
         self.password_entry = None
+        self.user_name = 'Locked'
 
     def create(self):
         self.core_frame = ttk.Frame(self.parent, relief='sunken', border=1)
@@ -25,9 +28,6 @@ class GreeterWidget:
         self.logo.image = logo_gif
         self.logo.grid(row=0, column=0, columnspan=2, pady=5)
 
-        #self.greeting = ttk.Label(self.labelframe, text="Hello, World!")
-        #self.greeting.grid(row=0, column=0, columnspan=2, pady=5)
-
         self.prompt = ttk.Label(self.labelframe, text="      Enter your name:", justify='r')
         self.prompt.grid(row=1, column=0, padx=(5, 0))
 
@@ -40,15 +40,15 @@ class GreeterWidget:
         self.password_entry = ttk.Entry(self.labelframe, show='*')
         self.password_entry.grid(row=2, column=1, padx=(0, 5))
 
-        self.button = ttk.Button(
-            self.labelframe,
-            text="Submit",
-            command=self.update_name,
-        )
+        self.button = ttk.Button(self.labelframe, text="Submit", command=self.update_name)
         self.button.grid(row=3, column=0, columnspan=2, pady=(10, 0))
 
     def update_name(self):
-        self.greeting.config(text=f"Hello, {self.entry.get().title()}!")
+        if self.entry.get().upper() != "":
+            self.user_name = self.entry.get().title()
+            self.root.update()
+        else:
+            self.password_entry.delete(0, 'end')
 
     def get_frame(self):
         return self.core_frame
