@@ -23,7 +23,7 @@ class GreeterWidget:
         self.labelframe = ttk.Frame(self.core_frame, relief='raised')
         self.labelframe.pack(ipady=10)
 
-        logo_gif = PhotoImage(file='assets/img/logo.gif')
+        logo_gif = PhotoImage(file='assets/img/logo.png')
         self.logo = ttk.Label(self.labelframe, image=logo_gif)
         self.logo.image = logo_gif
         self.logo.grid(row=0, column=0, columnspan=2, pady=5)

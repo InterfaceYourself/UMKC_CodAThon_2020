@@ -29,9 +29,10 @@ def main():
 
     # Create the root window give it a name and set its theme
     root = ttkthemes.ThemedTk(theme='black')
-    root.iconbitmap("./assets/img/icon_w_background.ico")
-    root.title("Greeter")
     root.lift()
+
+    # scales the app in size
+    root.tk.call('tk', 'scaling', 2)
     # always topmost while we edit so it doesnt disappear behind the windows ever 5 seconds
     root.attributes("-topmost", True)
 
@@ -59,7 +60,7 @@ def main():
     handle_frame.pack(fill='x', expand=True)
 
     # Que up and resize the logo
-    app_logo = PhotoImage(file='assets/img/logo.gif')
+    app_logo = PhotoImage(file='assets/img/logo.png')
     app_logo = app_logo.zoom(8)  # resize the image
     app_logo = app_logo.subsample(32)  # resample the image
 
