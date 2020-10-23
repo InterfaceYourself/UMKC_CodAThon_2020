@@ -1,4 +1,4 @@
-from tkinter import ttk, PhotoImage
+from tkinter import ttk
 import ttkthemes
 
 
@@ -10,7 +10,7 @@ class Centerer:
     def set_callback(self):
         self.root.bind('<Visibility>', self.center)
 
-    def center(self, event):
+    def center(self, _event):
         x = (self.root.winfo_screenwidth() - self.root.winfo_width()) // 2
         y = (self.root.winfo_screenheight() - self.root.winfo_height()) // 2
         self.root.geometry(f"+{x}+{y}")
