@@ -37,7 +37,7 @@ def main():
     greeter_widget = GreeterWidget(tab_controller)
     greeter_widget.create()
 
-    tab_controller.add(greeter_widget.core_frame, text='main')
+    tab_controller.add(greeter_widget.get_frame(), text='main')
     tab_controller.add(other_tab_label, text='other')
 
     root.mainloop()
