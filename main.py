@@ -18,6 +18,46 @@ class Centerer:
         self.root.unbind('<Visibility>')
 
 
+class GreeterWidget:
+    def __init__(self, parent):
+        self.parent = parent
+        self.core_frame = None
+        self.labelframe = None
+        self.greeting = None
+        self.prompt = None
+        self.entry = None
+        self.button = None
+
+    def create(self):
+        self.core_frame = ttk.Frame(self.parent, relief='ridge', border=1)
+        self.core_frame.pack()
+
+        self.labelframe = ttk.Frame(self.core_frame, relief='raised')
+        self.labelframe.pack()
+
+        self.greeting = ttk.Label(self.labelframe, text="Hello, World!")
+        self.greeting.grid(row=0, column=0, columnspan=3, pady=5)
+
+        self.prompt = ttk.Label(self.labelframe, text="Enter your name:")
+        self.prompt.grid(row=1, column=0, padx=(5, 0))
+
+        self.entry = ttk.Entry(self.labelframe, width=25, justify='c')
+        self.entry.grid(row=1, column=1)
+
+        self.button = ttk.Button(
+            self.labelframe,
+            text="Submit",
+            command=self.update_name,
+        )
+        self.button.grid(row=1, column=2, padx=(0, 5))
+
+    def update_name(self):
+        self.greeting.config(text=f"Hello, {self.entry.get().title()}!")
+
+    def get_frame(self):
+        return self.core_frame
+
+
 def main():
     root = ttkthemes.ThemedTk(theme='black')
     root.iconbitmap("./assets/img/icon_w_background.ico")
@@ -29,32 +69,13 @@ def main():
     tab_controller = ttk.Notebook(root)
     tab_controller.pack(expand=True, fill='both')
 
-    core_frame = ttk.Frame(tab_controller, relief='ridge', border=1)
-    core_frame.pack()
-
-    labelframe = ttk.Frame(core_frame, relief='raised')
-    labelframe.pack()
-
-    greeting = ttk.Label(labelframe, text="Hello, World!")
-    greeting.grid(row=0, column=0, columnspan=3, pady=5)
-
-    prompt = ttk.Label(labelframe, text="Enter your name:")
-    prompt.grid(row=1, column=0, padx=(5, 0))
-
-    entry = ttk.Entry(labelframe, width=25, justify='c')
-    entry.grid(row=1, column=1)
-
     other_tab_label = ttk.Label(tab_controller)
     other_tab_label.pack()
 
-    button = ttk.Button(
-        labelframe,
-        text="Submit",
-        command=lambda: greeting.config(text=f"Hello, {entry.get().title()}!")
-    )
-    button.grid(row=1, column=2, padx=(0, 5))
+    greeter_widget = GreeterWidget(tab_controller)
+    greeter_widget.create()
 
-    tab_controller.add(core_frame, text='main')
+    tab_controller.add(greeter_widget.core_frame, text='main')
     tab_controller.add(other_tab_label, text='other')
 
     root.mainloop()
