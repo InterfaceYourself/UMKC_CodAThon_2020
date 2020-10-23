@@ -20,6 +20,7 @@ class Centerer:
 
 def main():
     root = ttkthemes.ThemedTk(theme='black')
+    root.iconbitmap("./assets/img/logo.ico")
 
     centerer = Centerer(root)
     centerer.set_callback()
