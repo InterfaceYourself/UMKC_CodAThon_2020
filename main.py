@@ -47,15 +47,15 @@ def main():
     other_tab_label = ttk.Label(tab_controller)
     other_tab_label.pack()
 
-    tab_controller.add(core_frame, text='main')
-    tab_controller.add(other_tab_label, text='other')
-
     button = ttk.Button(
         labelframe,
         text="Submit",
         command=lambda: greeting.config(text=f"Hello, {entry.get().title()}!")
     )
     button.grid(row=1, column=2, padx=(0, 5))
+
+    tab_controller.add(core_frame, text='main')
+    tab_controller.add(other_tab_label, text='other')
 
     root.mainloop()
 
