@@ -24,7 +24,7 @@ def main():
     def move_window(event):
         root.geometry(f'+{event.x_root}+{event.y_root}')
 
-    root.overrideredirect(True)  # removes the window bar
+    # root.overrideredirect(True)  # removes the window bar
 
     centerer = Centerer(root)
     centerer.set_callback()
