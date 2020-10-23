@@ -1,6 +1,8 @@
 from tkinter import ttk
 import ttkthemes
 
+from greeter_widget import GreeterWidget
+
 
 class Centerer:
     def __init__(self, root):
@@ -29,33 +31,14 @@ def main():
     tab_controller = ttk.Notebook(root)
     tab_controller.pack(expand=True, fill='both')
 
-    core_frame = ttk.Frame(tab_controller, relief='ridge', border=1)
-    core_frame.pack()
-
-    labelframe = ttk.Frame(core_frame, relief='raised')
-    labelframe.pack()
-
-    greeting = ttk.Label(labelframe, text="Hello, World!")
-    greeting.grid(row=0, column=0, columnspan=3, pady=5)
-
-    prompt = ttk.Label(labelframe, text="Enter your name:")
-    prompt.grid(row=1, column=0, padx=(5, 0))
-
-    entry = ttk.Entry(labelframe, width=25, justify='c')
-    entry.grid(row=1, column=1)
-
     other_tab_label = ttk.Label(tab_controller)
     other_tab_label.pack()
 
-    tab_controller.add(core_frame, text='main')
-    tab_controller.add(other_tab_label, text='other')
+    greeter_widget = GreeterWidget(tab_controller)
+    greeter_widget.create()
 
-    button = ttk.Button(
-        labelframe,
-        text="Submit",
-        command=lambda: greeting.config(text=f"Hello, {entry.get().title()}!")
-    )
-    button.grid(row=1, column=2, padx=(0, 5))
+    tab_controller.add(greeter_widget.core_frame, text='main')
+    tab_controller.add(other_tab_label, text='other')
 
     root.mainloop()
 
