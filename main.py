@@ -26,11 +26,14 @@ def main():
     def move_window(event):
         root.geometry(f'+{event.x_root}+{event.y_root}')
 
+    # Create the root window give it a name and set its theme
     root = ttkthemes.ThemedTk(theme='black')
     root.iconbitmap("./assets/img/icon_w_background.ico")
     root.title("Greeter")
     root.lift()
+    # always topmost while we edit so it doesnt disappear behind the windows ever 5 seconds
     root.attributes("-topmost", True)
+
     # remove the top bar. Even on macs...
     root.overrideredirect(True)
     if platform.system() == 'Darwin':
@@ -41,18 +44,24 @@ def main():
     centerer = Centerer(root)
     centerer.set_callback()
 
+    # may be away around needing to stack containers like this
     master_container = ttk.Frame(root, relief='raised', border=5)
     master_container.pack()
+
+    # but it gives it a nice look
     root_containter = ttk.Frame(master_container)
     root_containter.pack(fill='x', expand=True)
 
-    handle_frame = ttk.Frame(root_containter, relief='raised')  # recreates the top bar
+    # recreates the top bar
+    handle_frame = ttk.Frame(root_containter, relief='raised')
     handle_frame.pack(fill='x', expand=True)
 
+    # Que up and resize the logo
     app_logo = PhotoImage(file='assets/img/logo.gif')
     app_logo = app_logo.zoom(8)  # resize the image
     app_logo = app_logo.subsample(32)  # resample the image
 
+    # apply the logo to the top bar left hand button
     handle_frame_logo = ttk.Button(handle_frame,
                                    image=app_logo,
                                    command=lambda: print('File menu:')
@@ -60,38 +69,49 @@ def main():
     handle_frame_logo.image = app_logo
     handle_frame_logo.pack(side='left')
 
+    # display the name of the app
     app_title = ttk.Label(handle_frame, text=" App Title   ")
     app_title.pack(side='left', padx=2)
 
+    # treasure does not lie here
     close_button = ttk.Button(handle_frame, text='X', command=root.destroy)  # creates a button for the top bar to exit
     close_button.pack(side='right')
 
+    # ---
     tab_controller = ttk.Notebook(root_containter)
     tab_controller.pack(expand=True, fill='both')
 
+    # ---
     other_tab_label = ttk.Label(tab_controller, text='Where be dis?', relief='sunken')
     other_tab_label.pack()
 
+    # mimic of 'other_tab_label' safe to delete
     other_tab_label2 = ttk.Label(tab_controller, text='Where be dis?', relief='sunken')
     other_tab_label2.pack()
 
+    # ---
     greeter_widget = GreeterWidget(tab_controller)
     greeter_widget.create()
 
+    # ---
     tab_controller.add(greeter_widget.get_frame(), text='main')
     tab_controller.add(other_tab_label, text='other')
     tab_controller.add(other_tab_label2, text='stash')
 
+    # display a status bar at the bottom of the window
     status_bar = ttk.Frame(master_container, relief='sunken')
     status_bar.pack(fill='both', expand=True)
 
+    # Label for current day for status bar
     date_label = ttk.Label(status_bar, text=str(datetime.datetime.today()).split(' ')[0])
     date_label.pack(side='right', pady=2, padx=2)
 
+    # bindings to allow the movement of the window with the custom topbar
     handle_frame.bind('<B1-Motion>', move_window)
     handle_frame_logo.bind('<B1-Motion>', move_window)
     app_title.bind('<B1-Motion>', move_window)
 
+    # always at bottom
     root.mainloop()
 
 

@@ -1,4 +1,4 @@
-from tkinter import ttk
+from tkinter import ttk, PhotoImage
 
 
 class GreeterWidget:
@@ -20,8 +20,13 @@ class GreeterWidget:
         self.labelframe = ttk.Frame(self.core_frame, relief='raised')
         self.labelframe.pack(ipady=10)
 
-        self.greeting = ttk.Label(self.labelframe, text="Hello, World!")
-        self.greeting.grid(row=0, column=0, columnspan=2, pady=5)
+        logo_gif = PhotoImage(file='assets/img/logo.gif')
+        self.logo = ttk.Label(self.labelframe, image=logo_gif)
+        self.logo.image = logo_gif
+        self.logo.grid(row=0, column=0, columnspan=2, pady=5)
+
+        #self.greeting = ttk.Label(self.labelframe, text="Hello, World!")
+        #self.greeting.grid(row=0, column=0, columnspan=2, pady=5)
 
         self.prompt = ttk.Label(self.labelframe, text="      Enter your name:", justify='r')
         self.prompt.grid(row=1, column=0, padx=(5, 0))
