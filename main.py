@@ -25,7 +25,10 @@ def main():
     centerer = Centerer(root)
     centerer.set_callback()
 
-    core_frame = ttk.Frame(root, relief='ridge', border=1)
+    tab_controller = ttk.Notebook(root)
+    tab_controller.pack(expand=True, fill='both')
+
+    core_frame = ttk.Frame(tab_controller, relief='ridge', border=1)
     core_frame.pack()
 
     labelframe = ttk.Frame(core_frame, relief='raised')
@@ -39,6 +42,12 @@ def main():
 
     entry = ttk.Entry(labelframe, width=25, justify='c')
     entry.grid(row=1, column=1)
+
+    other_tab_label = ttk.Label(tab_controller)
+    other_tab_label.pack()
+
+    tab_controller.add(core_frame, text='main')
+    tab_controller.add(other_tab_label, text='other')
 
     button = ttk.Button(
         labelframe,
