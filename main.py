@@ -21,7 +21,12 @@ def main():
         root.overrideredirect(True)
         print('Windows detected +5 to bonus rolls')
 
+    # Load images
     back = tk.PhotoImage(file='assets/img/clipboard/clipboardx2.png')
+    paper = tk.PhotoImage(file='assets/img/clipboard/paper.png')
+    clip = tk.PhotoImage(file='assets/img/clipboard/metal_clip.png')
+
+    # Resize and center window based on dimensions of `back`
     root.geometry(
         f'{back.width()}x{back.height()}'
         f'+{(root.winfo_screenwidth() - back.width()) // 2}'
