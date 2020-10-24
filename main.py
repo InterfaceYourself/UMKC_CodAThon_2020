@@ -65,10 +65,11 @@ def main():
     app_logo = app_logo.subsample(32)  # resample the image
 
     # apply the logo to the top bar left hand button
-    handle_frame_logo = ttk.Button(handle_frame,
-                                   image=app_logo,
-                                   command=lambda: print('File menu:'),
-                                   )
+    handle_frame_logo = ttk.Button(
+        handle_frame,
+        image=app_logo,
+        command=lambda: print('File menu:'),
+    )
     handle_frame_logo.image = app_logo
     handle_frame_logo.pack(side='left', fill='y')
 
