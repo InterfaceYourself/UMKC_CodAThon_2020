@@ -43,7 +43,7 @@ def main():
         root.overrideredirect(True)
         print('Windows detected +5 to bonus rolls')
 
-    # ---
+    # center the window when it becomes visible
     centerer = Centerer(root)
     centerer.set_callback()
 
