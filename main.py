@@ -73,7 +73,7 @@ def main():
     handle_frame_logo.pack(side='left', fill='y')
 
     # display the name of the app
-    app_title = ttk.Label(handle_frame, text=" App Title   ")
+    app_title = ttk.Label(handle_frame, text=" Covid Catcher   ")
     app_title.pack(side='left', padx=2)
 
     # treasure does not lie here
@@ -89,7 +89,9 @@ def main():
     other_tab_label.pack()
 
     # mimic of 'other_tab_label' safe to delete
-    other_tab_label2 = ttk.Label(tab_controller, text='Where be dis?', relief='sunken')
+    image2 = PhotoImage(file='assets/img/clipboard/clipboardx2.png')
+    other_tab_label2 = ttk.Label(tab_controller, image=image2, relief='sunken')
+    other_tab_label2.image = image2
     other_tab_label2.pack()
 
     # ---
@@ -97,9 +99,9 @@ def main():
     greeter_widget.create()
 
     # ---
-    tab_controller.add(greeter_widget.get_frame(), text='main')
-    tab_controller.add(other_tab_label, text='other')
-    tab_controller.add(other_tab_label2, text='stash')
+    tab_controller.add(greeter_widget.get_frame(), text='Incoming')
+    tab_controller.add(other_tab_label, text='Seen')
+    tab_controller.add(other_tab_label2, text='Statistics')
 
     # display a status bar at the bottom of the window
     status_bar = ttk.Frame(master_container, relief='sunken')
@@ -110,7 +112,7 @@ def main():
     status_label_date.pack(side='right', pady=2, padx=2)
 
     # Label for whoever is logged in
-    status_label_name = ttk.Label(status_bar, text=greeter_widget.user_name)
+    status_label_name = ttk.Label(status_bar, text='Locked')
     status_label_name.pack(side='left', pady=2, padx=2)
 
     # bindings to allow the movement of the window with the custom top bar

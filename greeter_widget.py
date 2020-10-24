@@ -14,7 +14,6 @@ class GreeterWidget:
         self.button = None
         self.password_prompt = None
         self.password_entry = None
-        self.user_name = 'Locked'
 
     def create(self):
         self.core_frame = ttk.Frame(self.parent, relief='sunken', border=1)
@@ -40,15 +39,9 @@ class GreeterWidget:
         self.password_entry = ttk.Entry(self.labelframe, show='*')
         self.password_entry.grid(row=2, column=1, padx=(0, 5))
 
-        self.button = ttk.Button(self.labelframe, text="Submit", command=self.update_name)
+        self.button = ttk.Button(self.labelframe, text="Submit", command=None)
         self.button.grid(row=3, column=0, columnspan=2, pady=(10, 0))
 
-    def update_name(self):
-        if self.entry.get().upper() != "":
-            self.user_name = self.entry.get().title()
-            self.root.update()
-        else:
-            self.password_entry.delete(0, 'end')
 
     def get_frame(self):
         return self.core_frame
