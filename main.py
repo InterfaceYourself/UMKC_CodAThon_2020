@@ -36,9 +36,12 @@ def main():
     root_canvas = tk.Canvas(root)
     root_canvas.pack(expand=True, fill='both')
 
-    root_canvas.create_image(back.width() // 2, back.height() // 2, image=back)
-    root_canvas.create_image(back.width() // 2, back.height() // 2, image=paper)
-    root_canvas.create_image(back.width() // 2, back.height() // 2, image=clip)
+    center_x = back.width() // 2
+    center_y = back.height() // 2
+
+    root_canvas.create_image(center_x, center_y, image=back)
+    root_canvas.create_image(center_x, center_y, image=paper)
+    root_canvas.create_image(center_x, center_y, image=clip)
 
     # always at bottom
     root.mainloop()
