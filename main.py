@@ -1,8 +1,11 @@
 import tkinter as tk
+from tkinter import ttk
+
 import ttkthemes
 import platform
 
 from movement_handler import MovementHandlerWithInvertedBounds
+from page_templates.disclaimer import Disclaimer
 
 
 def main():
@@ -43,6 +46,14 @@ def main():
     root_canvas.create_image(center_x, center_y, image=back)
     root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
+
+    disclaimer_page = Disclaimer(root_canvas)
+
+    with open('assets/pages/disclaimer.json') as f:
+        disclaimer_page.load_from_file(f)
+
+    disclaimer_page.create()
+    disclaimer_page.get_widget().place(x=0, y=0)
 
     movement_handler = MovementHandlerWithInvertedBounds(
         root,
