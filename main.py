@@ -3,29 +3,7 @@ import tkinter as tk
 import ttkthemes
 import platform
 
-
-class MovementHandler:
-    def __init__(self, root):
-        self.root = root
-        self.previous_mouse_x = None
-        self.previous_mouse_y = None
-
-    def bind_callbacks(self):
-        self.root.bind('<Button-1>', self._set_location)
-        self.root.bind('<B1-Motion>', self._move)
-
-    def _move(self, event):
-        change_in_x = event.x - self.previous_mouse_x
-        change_in_y = event.y - self.previous_mouse_y
-
-        self.root.geometry(
-            f'+{self.root.winfo_x() + change_in_x}'
-            f'+{self.root.winfo_y() + change_in_y}'
-        )
-
-    def _set_location(self, event):
-        self.previous_mouse_x = event.x
-        self.previous_mouse_y = event.y
+from movement_handler import MovementHandlerWithInvertedBounds
 
 
 def main():
@@ -67,7 +45,11 @@ def main():
     root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
 
-    movement_handler = MovementHandler(root)
+    movement_handler = MovementHandlerWithInvertedBounds(
+        root,
+        top_left=(30, 30),
+        bottom_right=(back.width()-30, back.height()-30)
+    )
     movement_handler.bind_callbacks()
 
     # always at bottom
