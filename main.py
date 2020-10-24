@@ -4,6 +4,30 @@ import ttkthemes
 import platform
 
 
+class MovementHandler:
+    def __init__(self, root):
+        self.root = root
+        self.previous_mouse_x = None
+        self.previous_mouse_y = None
+
+    def bind_callbacks(self):
+        self.root.bind('<Button-1>', self._set_location)
+        self.root.bind('<B1-Motion>', self._move)
+
+    def _move(self, event):
+        change_in_x = event.x - self.previous_mouse_x
+        change_in_y = event.y - self.previous_mouse_y
+
+        self.root.geometry(
+            f'+{self.root.winfo_x() + change_in_x}'
+            f'+{self.root.winfo_y() + change_in_y}'
+        )
+
+    def _set_location(self, event):
+        self.previous_mouse_x = event.x
+        self.previous_mouse_y = event.y
+
+
 def main():
     # Create the root window give it a name and set its theme
     root = ttkthemes.ThemedTk(theme='black')
@@ -42,6 +66,9 @@ def main():
     root_canvas.create_image(center_x, center_y, image=back)
     root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
+
+    movement_handler = MovementHandler(root)
+    movement_handler.bind_callbacks()
 
     # always at bottom
     root.mainloop()
