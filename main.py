@@ -24,7 +24,7 @@ def main():
         print('Windows detected +5 to bonus rolls')
 
     # Load images
-    back = tk.PhotoImage(file='assets/img/clipboard/clipboardx2.png')
+    back = tk.PhotoImage(file='assets/img/clipboard/clipboard.png')
     paper = tk.PhotoImage(file='assets/img/clipboard/paper.png')
     clip = tk.PhotoImage(file='assets/img/clipboard/metal_clip.png')
 
@@ -42,7 +42,7 @@ def main():
     center_y = back.height() // 2
 
     root_canvas.create_image(center_x, center_y, image=back)
-    root_canvas.create_image(center_x, center_y, image=paper)
+    # root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
 
     movement_handler = MovementHandlerWithInvertedBounds(
