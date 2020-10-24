@@ -81,7 +81,7 @@ def main():
     close_button = ttk.Button(handle_frame, text='X', command=root.destroy)  # creates a button for the top bar to exit
     close_button.pack(side='right')
 
-    # ---
+    # Create and pack tab controller
     tab_controller = ttk.Notebook(root_container)
     tab_controller.pack(expand=True, fill='both')
 
@@ -95,11 +95,11 @@ def main():
     other_tab_label2.image = image2
     other_tab_label2.pack()
 
-    # ---
+    # Create a greeter widget and put it in root
     greeter_widget = GreeterWidget(tab_controller, root)
     greeter_widget.create()
 
-    # ---
+    # Add all the items to their respective tabs
     tab_controller.add(greeter_widget.get_frame(), text='Incoming')
     tab_controller.add(other_tab_label, text='Seen')
     tab_controller.add(other_tab_label2, text='Statistics')
