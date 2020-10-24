@@ -1,4 +1,3 @@
-from tkinter import ttk
 import tkinter as tk
 import ttkthemes
 import platform
@@ -17,10 +16,10 @@ def main():
     root.attributes("-topmost", True)
 
     # remove the top bar. Even on macs...
+    root.overrideredirect(True)
     if platform.system() == 'Darwin':
         root.overrideredirect(False)
     elif platform.system() == 'Windows':
-        root.overrideredirect(True)
         print('Windows detected +5 to bonus rolls')
 
     # Load images
@@ -42,7 +41,7 @@ def main():
     center_y = back.height() // 2
 
     root_canvas.create_image(center_x, center_y, image=back)
-    # root_canvas.create_image(center_x, center_y, image=paper)
+    root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
 
     movement_handler = MovementHandlerWithInvertedBounds(
