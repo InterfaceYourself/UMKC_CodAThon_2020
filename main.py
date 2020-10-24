@@ -37,10 +37,10 @@ def main():
     root.attributes("-topmost", True)
 
     # remove the top bar. Even on macs...
-    root.overrideredirect(True)
     if platform.system() == 'Darwin':
         root.overrideredirect(False)
     elif platform.system() == 'Windows':
+        root.overrideredirect(True)
         print('Windows detected +5 to bonus rolls')
 
     # ---
