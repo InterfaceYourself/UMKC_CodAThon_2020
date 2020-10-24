@@ -37,13 +37,13 @@ def main():
     root.attributes("-topmost", True)
 
     # remove the top bar. Even on macs...
-    root.overrideredirect(True)
     if platform.system() == 'Darwin':
         root.overrideredirect(False)
     elif platform.system() == 'Windows':
+        root.overrideredirect(True)
         print('Windows detected +5 to bonus rolls')
 
-    # ---
+    # center the window when it becomes visible
     centerer = Centerer(root)
     centerer.set_callback()
 
@@ -65,10 +65,11 @@ def main():
     app_logo = app_logo.subsample(32)  # resample the image
 
     # apply the logo to the top bar left hand button
-    handle_frame_logo = ttk.Button(handle_frame,
-                                   image=app_logo,
-                                   command=lambda: print('File menu:'),
-                                   )
+    handle_frame_logo = ttk.Button(
+        handle_frame,
+        image=app_logo,
+        command=lambda: print('File menu:'),
+    )
     handle_frame_logo.image = app_logo
     handle_frame_logo.pack(side='left', fill='y')
 
@@ -80,7 +81,7 @@ def main():
     close_button = ttk.Button(handle_frame, text='X', command=root.destroy)  # creates a button for the top bar to exit
     close_button.pack(side='right')
 
-    # ---
+    # Create and pack tab controller
     tab_controller = ttk.Notebook(root_container)
     tab_controller.pack(expand=True, fill='both')
 
@@ -94,11 +95,11 @@ def main():
     other_tab_label2.image = image2
     other_tab_label2.pack()
 
-    # ---
+    # Create a greeter widget and put it in root
     greeter_widget = GreeterWidget(tab_controller, root)
     greeter_widget.create()
 
-    # ---
+    # Add all the items to their respective tabs
     tab_controller.add(greeter_widget.get_frame(), text='Incoming')
     tab_controller.add(other_tab_label, text='Seen')
     tab_controller.add(other_tab_label2, text='Statistics')
