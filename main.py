@@ -47,7 +47,7 @@ def main():
     centerer = Centerer(root)
     centerer.set_callback()
 
-    # may be away around needing to stack containers like this
+    # maybe away around needing to stack containers like this
     master_container = ttk.Frame(root, relief='raised', border=5)
     master_container.pack()
 
@@ -67,10 +67,10 @@ def main():
     # apply the logo to the top bar left hand button
     handle_frame_logo = ttk.Button(handle_frame,
                                    image=app_logo,
-                                   command=lambda: print('File menu:')
+                                   command=lambda: print('File menu:'),
                                    )
     handle_frame_logo.image = app_logo
-    handle_frame_logo.pack(side='left')
+    handle_frame_logo.pack(side='left', fill='y')
 
     # display the name of the app
     app_title = ttk.Label(handle_frame, text=" App Title   ")
