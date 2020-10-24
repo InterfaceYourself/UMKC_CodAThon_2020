@@ -1,4 +1,4 @@
 ## Contributors:
-- Soge
-- Krackasourus
-- creallfluharty
+- sogent (Team Lead)
+- Krackasourus (Member)
+- creallfluharty (Member)
