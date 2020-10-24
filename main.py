@@ -51,6 +51,8 @@ def main():
     )
     movement_handler.bind_callbacks()
 
+    root.bind('<Button-2>', lambda _: root.destroy())
+
     # always at bottom
     root.mainloop()
 
