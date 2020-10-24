@@ -29,7 +29,7 @@ def main():
     )
 
     root_canvas = tk.Canvas(root)
-    root_canvas.pack(expand=True)
+    root_canvas.pack(expand=True, fill='both')
 
     root_canvas.create_image(back.width() // 2, back.height() // 2, image=back)
 
