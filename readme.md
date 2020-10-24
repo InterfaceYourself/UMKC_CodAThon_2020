@@ -1,4 +1,4 @@
-Contributors:
-eukraticism
-Soge
-Krackasourus
+## Contributors:
+- Soge
+- Krackasourus
+- creallfluharty
