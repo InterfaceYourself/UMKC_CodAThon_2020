@@ -37,6 +37,8 @@ def main():
     root_canvas.pack(expand=True, fill='both')
 
     root_canvas.create_image(back.width() // 2, back.height() // 2, image=back)
+    root_canvas.create_image(back.width() // 2, back.height() // 2, image=paper)
+    root_canvas.create_image(back.width() // 2, back.height() // 2, image=clip)
 
     # always at bottom
     root.mainloop()
