@@ -24,7 +24,7 @@ class PatientReport:
 
         self.patient_image = tk.PhotoImage(file=self.patient.picture_path)
         self.patient_portrait = ttk.Label(pf, image=self.patient_image, background='#E7E5E8')
-
+        self.patient_portrait.image = self.patient_image
         self.symptoms_frame = ttk.Frame(pf)
         self.symptoms_frame_label = ttk.Label(pf, justify='c', text='___Symptoms___', background='#E7E5E8')
 
