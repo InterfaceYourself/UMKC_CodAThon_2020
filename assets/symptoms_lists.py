@@ -16,6 +16,9 @@ covid_symptoms = [
     'Nausea',
     'Vomiting',
     'Diarrhea',
+    'Dizziness',
+    'Loss of color in face and finger tips',
+    'Wheezing'
 
 ]
 
@@ -37,6 +40,19 @@ non_covid_symptoms = [
     'Nausea',
     'Vomiting',
     'Diarrhea',
+    'Trouble sleeping',
+    'Weight gain',
+    'Constipation',
+    'Hives',
+    'Hair loss',
+    'Hot flashes',
+    'Ringing in ears',
+    'Nose bleeding',
+    'Swollen gums'
+
+
+
+
 ]
 
 false_symptoms = [
