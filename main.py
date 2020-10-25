@@ -28,7 +28,6 @@ def main():
     # Load images
     back = tk.PhotoImage(file='assets/img/clipboard/clipboard.png')
     paper = tk.PhotoImage(file='assets/img/clipboard/paper.png')
-    clip = tk.PhotoImage(file='assets/img/clipboard/metal_clip.png')
 
     # Resize and center window based on dimensions of `back`
     root.geometry(
@@ -61,6 +60,7 @@ def main():
     disclaimer_page.get_widget().place(x=PAPER_TOP_LEFT[0], y=PAPER_TOP_LEFT[1])
 
     # draw the clip on top of everything else
+    clip = tk.PhotoImage(file='assets/img/clipboard/metal_clip.png')
     root_canvas.create_image(center_x, center_y, image=clip)
 
     movement_handler = MovementHandlerWithInvertedBounds(
