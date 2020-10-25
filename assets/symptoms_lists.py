@@ -67,7 +67,6 @@ non_covid_symptoms = [
     'Skin blisters and welts',
     'Skin rash and yellow skin',
     'Slurred speech'
-
 ]
 
 false_symptoms = [
