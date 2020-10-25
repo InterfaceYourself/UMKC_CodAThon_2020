@@ -45,7 +45,7 @@ def main():
     center_y = back.height() // 2
 
     root_canvas.create_image(center_x, center_y, image=back)
-    #root_canvas.create_image(center_x, center_y, image=paper)
+    root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
 
     EDGE_LEN = 30
@@ -59,20 +59,32 @@ def main():
     with open('assets/pages/disclaimer.json') as f:
         disclaimer_page.load_from_file(f)
 
-    encounter_button = tk.PhotoImage(file='assets/img/menu_buttons/encounters.png')
-    encounters = tk.Button(root_canvas, image=encounter_button, borderwidth=0, background='gray')
-    encounters.image = encounter_button
-    encounters.place(anchor='c', relx=.5, rely=.5)
+    statistics_frame = tk.Frame(root_canvas, background='#E7E5E8')
+    statistics_frame.place(anchor='n', relx=.5, rely=.2)
 
-    statistics_button = tk.PhotoImage(file='assets/img/menu_buttons/statistics.png')
-    statistics = tk.Button(root_canvas, image=statistics_button, borderwidth=0, background='gray')
-    statistics.image = encounter_button
-    statistics.place(anchor='c', relx=.5, rely=.6)
+    stat_report = tk.Label(statistics_frame, text='___STATISTICS REPORT___', background='#E7E5E8', font=15)
+    stat_report.pack()
+    
+    padding = tk.Label(statistics_frame, height=5, background='#E7E5E8')
+    padding.pack()
 
-    exit_button = tk.PhotoImage(file='assets/img/menu_buttons/exit.png')
-    exit_option = tk.Button(root_canvas, image=exit_button, borderwidth=0, background='gray')
-    exit_option.image = exit_button
-    exit_option.place(anchor='c', relx=.5, rely=.7)
+    Accuracy = tk.Label(statistics_frame, text=f'Accuracy Rating: {"%"}', background='#E7E5E8')
+    Accuracy.pack()
+
+    tests_given = tk.Label(statistics_frame, text=f'Tests taken: {"int"}', background='#E7E5E8')
+    tests_given.pack()
+
+    missed_test = tk.Label(statistics_frame, text=f'Missed Tests: {"int"}', background='#E7E5E8')
+    missed_test.pack()
+
+
+
+
+
+
+
+
+
 
     # patients = [
     #     create_random_patient()
