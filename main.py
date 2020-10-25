@@ -5,6 +5,7 @@ import ttkthemes
 import platform
 import random
 
+from assets import names
 from objects.patient import Patient
 from page_templates.disclaimer import Disclaimer
 from page_templates.patient_report import PatientReport
@@ -67,13 +68,32 @@ def main():
     disclaimer_page.create()
     # disclaimer_page.get_widget().place(x=PAPER_TOP_LEFT[0], y=PAPER_TOP_LEFT[1])
 
+    sex_choices = ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'O']  # o.O
+    pick_sex = random.choice(sex_choices)
+    if pick_sex == 'M':
+        gender = 'M'
+        first = names.male_names[random.randint(0, len(names.male_names) - 1)]
+    elif pick_sex == 'F':
+        gender = 'F'
+        first = names.female_names[random.randint(0, len(names.female_names) - 1)]
+    else:
+        pick_again = random.randint(1, 2)
+        if pick_again == 1:
+            gender = 'M'
+            first = names.male_names[random.randint(0, len(names.male_names) - 1)]
+        else:
+            gender = 'F'
+            first = names.female_names[random.randint(0, len(names.female_names) - 1)]
+
+    status_choices = ['Single', 'Married', 'Divorced', 'Widowed', 'Separated']
+
     patient = Patient(
-        picture_path='assets/img/Patients/male_3_2.png',
-        first_name='John',
-        last_name='Doe',
-        age=40,
-        sex='M',
+        first_name=first,
+        last_name=names.last_names[random.randint(0, len(names.last_names) - 1)],
+        age=random.randint(18, 70),
+        sex=pick_sex,
         marital_status='Single',
+        picture_path=f'assets/img/Patients/{gender + "_" + str(random.randint(1, 8)) + "_" + str(random.randint(1, 3)) + ""}.png',
     )
 
     patient_report = PatientReport(root_canvas, patient)

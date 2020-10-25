@@ -17,7 +17,7 @@ class PatientInfo:
 
         self.patient_name = ttk.Label(
             self.patient_info_frame,
-            text=f'Name: {self.patient.last_name}, {self.patient.first_name}',
+            text=f'Name: {self.patient.first_name} {self.patient.last_name}',
             background='#E7E5E8',
             foreground='black'
         )

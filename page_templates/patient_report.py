@@ -7,7 +7,6 @@ class PatientReport:
     def __init__(self, parent, patient):
         self.parent = parent
         self.patient = patient
-
         self.patient_frame = None
         self.patient_info_widget = None
         self.patient_image = None
