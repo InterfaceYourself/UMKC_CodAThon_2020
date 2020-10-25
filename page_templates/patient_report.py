@@ -37,8 +37,7 @@ class PatientReport:
         self.symptoms_frame_label.grid(row=1, column=0, columnspan=2, sticky='news')
         self.symptoms_frame.grid(row=2, column=0, columnspan=2, sticky='news')
 
-        symptoms = get_symptoms.gen_symptoms(self.patient.has_covid)
-        for symptom in symptoms:
+        for symptom in self.patient.symptoms:
             symptom_label = ttk.Label(self.symptoms_frame, text=symptom, background='#E7E5E8')
             symptom_label.pack(fill='both', expand=True)
 

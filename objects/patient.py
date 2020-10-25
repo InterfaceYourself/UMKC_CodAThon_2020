@@ -7,6 +7,10 @@ class Patient:
         self.sex = sex
         self.marital_status = marital_status
         self.has_covid = False
+        self.symptoms = []
 
     def set_covid_status(self, status):
         self.has_covid = status
+
+    def add_symptoms(self, symptoms):
+        self.symptoms.extend(symptoms)

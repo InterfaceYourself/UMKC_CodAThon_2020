@@ -9,6 +9,7 @@ from assets import names
 from objects.patient import Patient
 from page_templates.disclaimer import Disclaimer
 from page_templates.patient_report import PatientReport
+from widgets import get_symptoms
 
 
 def main():
@@ -111,7 +112,6 @@ def main():
     else:
         marital_status = status_choices[4]
 
-
     patient = Patient(
         first_name=first,
         last_name=names.last_names[random.randint(0, len(names.last_names) - 1)],
@@ -120,6 +120,9 @@ def main():
         marital_status=marital_status,
         picture_path=f'assets/img/Patients/{gender}_{random.randint(1, 8)}_{random.randint(1, 3)}.png',
     )
+
+    patient.set_covid_status(True)
+    patient.add_symptoms(get_symptoms.gen_symptoms(patient.has_covid))
 
     patient_report = PatientReport(root_canvas, patient)
     patient_report.create()
