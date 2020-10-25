@@ -16,7 +16,7 @@ def main():
     # scales the app in size
     root.tk.call('tk', 'scaling', 2)
     # always topmost while we edit so it doesnt disappear behind the windows ever 5 seconds
-    root.attributes("-topmost", True)
+    # root.attributes("-topmost", True)
     root.resizable(False, False)
 
     # remove the top bar. Even on macs...
