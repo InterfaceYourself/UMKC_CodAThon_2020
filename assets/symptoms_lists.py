@@ -1,7 +1,7 @@
 covid_symptoms = [
     'Fever',
     'Chills',
-    'Cough',
+    'Severe cough',
     'Shortness of breath',
     'Difficulty breathing',
     'Fatigue',
@@ -70,7 +70,14 @@ non_covid_symptoms = [
     'Fainting',
     'Chronic seizures',
     'Frequent urination',
-    ''
+    'Foot swelling and pain',
+    'Painful bowel movements',
+    'Ear aches',
+    'Excessive gas',
+    'Muscle cramps or spasms',
+    'Joint wrist pain',
+    'Joint ankle pain'
+
 ]
 
 false_symptoms = [
