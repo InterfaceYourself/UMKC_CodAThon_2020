@@ -13,7 +13,6 @@ from page_templates.patient_report import PatientReport
 
 def main():
     # Create the root window give it a name and set its theme
-    #root = ttkthemes.ThemedTk(theme='black')
     root = tk.Tk()
     root.title('Counting Covid')
     root.iconbitmap('assets/img/Untitled.ico')
@@ -65,9 +64,6 @@ def main():
     with open('assets/pages/disclaimer.json') as f:
         disclaimer_page.load_from_file(f)
 
-    disclaimer_page.create()
-    # disclaimer_page.get_widget().place(x=PAPER_TOP_LEFT[0], y=PAPER_TOP_LEFT[1])
-
     sex_choices = ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'Other']  # o.O
     pick_sex = random.choice(sex_choices)
     if pick_sex == 'M':
@@ -85,14 +81,43 @@ def main():
             gender = 'F'
             first = names.female_names[random.randint(0, len(names.female_names) - 1)]
 
-    status_choices = ['Single', 'Married', 'Divorced', 'Widowed', 'Separated']
+    age = random.randint(18, 85)
+
+    status_choices = ['Single', 'Married', 'Divorced', 'Separated', 'Widowed']
+    status_pick = random.randint(1, 40)
+
+    if age > 70:
+        status_pick += age
+    elif age > 50:
+        status_pick += age // 2
+    elif age > 40:
+        status_pick -= age // 3
+    elif age > 30:
+        status_pick -= age // 4
+    elif age <= 30:
+        status_pick -= age // 3
+
+    if status_pick <= 0:
+        status_pick = 1
+
+    if status_pick in range(1, 36):
+        marital_status = status_choices[0]
+    elif status_pick in range(36, 66):
+        marital_status = status_choices[1]
+    elif status_pick in range(66, 86):
+        marital_status = status_choices[2]
+    elif status_pick in range(86, 101):
+        marital_status = status_choices[3]
+    else:
+        marital_status = status_choices[4]
+
 
     patient = Patient(
         first_name=first,
         last_name=names.last_names[random.randint(0, len(names.last_names) - 1)],
-        age=random.randint(18, 70),
+        age=age,
         sex=pick_sex,
-        marital_status=random.choice(status_choices),
+        marital_status=marital_status,
         picture_path=f'assets/img/Patients/{gender + "_" + str(random.randint(1, 8)) + "_" + str(random.randint(1, 3)) + ""}.png',
     )
 
@@ -100,6 +125,9 @@ def main():
     patient_report.create()
 
     patient_report.get_widget().place(relx=.16, rely=.2)
+
+    disclaimer_page.create()
+    disclaimer_page.get_widget().place(anchor='c', relx=.5, rely=.5)
 
     # always at bottom
     root.mainloop()

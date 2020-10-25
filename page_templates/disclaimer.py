@@ -27,9 +27,9 @@ class Disclaimer:
         self.frame = ttk.Frame(self.parent)
 
         self.icon = tk.PhotoImage(file=self.icon_path)
-        self.icon_label = ttk.Label(self.frame, image=self.icon)
-        self.title = ttk.Label(self.frame, text=self.title_text)
-        self.body = ttk.Label(self.frame, text=self.body_text)
+        self.icon_label = ttk.Button(self.frame, image=self.icon, command=self.frame.destroy)
+        self.title = ttk.Label(self.frame, text=self.title_text, justify='c')
+        self.body = ttk.Label(self.frame, text=self.body_text, justify='c')
 
         self.icon_label.pack()  # place(x=10, y=100)
         self.title.pack()  # place(x=100, y=100)
