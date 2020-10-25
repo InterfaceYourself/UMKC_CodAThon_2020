@@ -45,7 +45,7 @@ def main():
     center_y = back.height() // 2
 
     root_canvas.create_image(center_x, center_y, image=back)
-    root_canvas.create_image(center_x, center_y, image=paper)
+    #root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
 
     EDGE_LEN = 30
@@ -59,22 +59,37 @@ def main():
     with open('assets/pages/disclaimer.json') as f:
         disclaimer_page.load_from_file(f)
 
-    patients = [
-        create_random_patient()
-        for i in range(20)
-    ]
+    encounter_button = tk.PhotoImage(file='assets/img/menu_buttons/encounters.png')
+    encounters = tk.Button(root_canvas, image=encounter_button, borderwidth=0, background='gray')
+    encounters.image = encounter_button
+    encounters.place(anchor='c', relx=.5, rely=.5)
 
-    report_widgets = [
-        PatientReport(root_canvas, patient)
-        for patient in patients
-    ]
-    for report_widget in report_widgets:
-        report_widget.create()
+    statistics_button = tk.PhotoImage(file='assets/img/menu_buttons/statistics.png')
+    statistics = tk.Button(root_canvas, image=statistics_button, borderwidth=0, background='gray')
+    statistics.image = encounter_button
+    statistics.place(anchor='c', relx=.5, rely=.6)
 
-    page_manager = PageManager(root_canvas)
-    page_manager.add_pages([report_widget.get_widget() for report_widget in report_widgets])
+    exit_button = tk.PhotoImage(file='assets/img/menu_buttons/exit.png')
+    exit_option = tk.Button(root_canvas, image=exit_button, borderwidth=0, background='gray')
+    exit_option.image = exit_button
+    exit_option.place(anchor='c', relx=.5, rely=.7)
 
-    root.bind('<Button-1>', lambda event: page_manager.flip_page())
+    # patients = [
+    #     create_random_patient()
+    #     for i in range(20)
+    # ]
+
+    # report_widgets = [
+    #     PatientReport(root_canvas, patient)
+    #     for patient in patients
+    # ]
+    # for report_widget in report_widgets:
+    #     report_widget.create()
+    #
+    # page_manager = PageManager(root_canvas)
+    # page_manager.add_pages([report_widget.get_widget() for report_widget in report_widgets])
+
+    # root.bind('<Button-1>', lambda event: page_manager.flip_page())
 
     # patient_report
 

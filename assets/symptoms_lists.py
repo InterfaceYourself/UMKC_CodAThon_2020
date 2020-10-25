@@ -62,4 +62,5 @@ false_symptoms = [
     'Congestion',
     'Runny nose',
     'Diarrhea',
+    'Nose bleeding',
 ]
