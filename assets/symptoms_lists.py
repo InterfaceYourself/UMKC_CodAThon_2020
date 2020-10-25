@@ -48,8 +48,8 @@ non_covid_symptoms = [
     'Hot flashes',
     'Ringing in ears',
     'Nose bleeding',
-    'Swollen gums'
-
+    'Swollen gums',
+    'Irregular heartbeat'
 
 
 
