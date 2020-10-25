@@ -66,7 +66,11 @@ non_covid_symptoms = [
     'Visual Hallucinations',
     'Skin blisters and welts',
     'Skin rash and yellow skin',
-    'Slurred speech'
+    'Slurred speech',
+    'Fainting',
+    'Chronic seizures',
+    'Frequent urination',
+    ''
 ]
 
 false_symptoms = [
