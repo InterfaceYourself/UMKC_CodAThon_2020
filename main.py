@@ -118,7 +118,7 @@ def main():
         age=age,
         sex=pick_sex,
         marital_status=marital_status,
-        picture_path=f'assets/img/Patients/{gender + "_" + str(random.randint(1, 8)) + "_" + str(random.randint(1, 3)) + ""}.png',
+        picture_path=f'assets/img/Patients/{gender}_{random.randint(1, 8)}_{random.randint(1, 3)}.png',
     )
 
     patient_report = PatientReport(root_canvas, patient)
