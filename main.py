@@ -68,7 +68,7 @@ def main():
     disclaimer_page.create()
     # disclaimer_page.get_widget().place(x=PAPER_TOP_LEFT[0], y=PAPER_TOP_LEFT[1])
 
-    sex_choices = ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'O']  # o.O
+    sex_choices = ['M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'M', 'F', 'Other']  # o.O
     pick_sex = random.choice(sex_choices)
     if pick_sex == 'M':
         gender = 'M'
@@ -92,7 +92,7 @@ def main():
         last_name=names.last_names[random.randint(0, len(names.last_names) - 1)],
         age=random.randint(18, 70),
         sex=pick_sex,
-        marital_status='Single',
+        marital_status=random.choice(status_choices),
         picture_path=f'assets/img/Patients/{gender + "_" + str(random.randint(1, 8)) + "_" + str(random.randint(1, 3)) + ""}.png',
     )
 
