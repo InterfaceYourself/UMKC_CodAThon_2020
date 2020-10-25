@@ -52,7 +52,7 @@ def main():
 
     patients = [
         create_random_patient()
-        for i in range(20)
+        for _ in range(20)
     ]
 
     report_widgets = [
@@ -65,7 +65,7 @@ def main():
     page_manager = PageManager(root_canvas)
     page_manager.add_pages([report_widget.get_widget() for report_widget in report_widgets])
 
-    root.bind('<Button-1>', lambda event: page_manager.flip_page())
+    root.bind('<Button-1>', lambda _: page_manager.flip_page())
 
     # patient_report
 
