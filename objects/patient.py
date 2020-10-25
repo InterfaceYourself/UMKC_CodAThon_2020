@@ -6,3 +6,7 @@ class Patient:
         self.age = age
         self.sex = sex
         self.marital_status = marital_status
+        self.has_covid = False
+
+    def set_covid_status(self, status):
+        self.has_covid = status
