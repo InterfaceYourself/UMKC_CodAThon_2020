@@ -10,18 +10,18 @@ def create_random_patient():
     pick_sex = random.choice(sex_choices)
     if pick_sex == 'M':
         gender = 'M'
-        first = names.male_names[random.randint(0, len(names.male_names) - 1)]
+        first = random.choice(names.male_names)
     elif pick_sex == 'F':
         gender = 'F'
-        first = names.female_names[random.randint(0, len(names.female_names) - 1)]
+        first = random.choice(names.female_names)
     else:
         pick_again = random.randint(1, 2)
         if pick_again == 1:
             gender = 'M'
-            first = names.male_names[random.randint(0, len(names.male_names) - 1)]
+            first = random.choice(names.male_names)
         else:
             gender = 'F'
-            first = names.female_names[random.randint(0, len(names.female_names) - 1)]
+            first = random.choice(names.female_names)
 
     age = random.randint(18, 85)
 
