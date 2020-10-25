@@ -15,16 +15,7 @@ def main():
 
     # scales the app in size
     root.tk.call('tk', 'scaling', 2)
-    # always topmost while we edit so it doesnt disappear behind the windows ever 5 seconds
-    # root.attributes("-topmost", True)
     root.resizable(False, False)
-
-    # remove the top bar. Even on macs...
-    # root.overrideredirect(True)
-    # if platform.system() == 'Darwin':
-    #     root.overrideredirect(False)
-    # elif platform.system() == 'Windows':
-    #     print('Windows detected +5 to bonus rolls')
 
     # Load images
     back = tk.PhotoImage(file='assets/img/clipboard/clipboard.png')
