@@ -74,7 +74,7 @@ def main():
 
         page_manager.start()
 
-        root.bind('<Button-1>', lambda event: page_manager.flip_page())
+        #root.bind('<Button-1>', lambda event: page_manager.flip_page())
 
     encounter_button = tk.PhotoImage(file='assets/img/menu_buttons/encounters.png')
     encounters = tk.Button(root_canvas, image=encounter_button, borderwidth=0, background='gray', command=start_encounters)
@@ -87,7 +87,7 @@ def main():
     statistics.place(anchor='c', relx=.5, rely=.6)
 
     exit_button = tk.PhotoImage(file='assets/img/menu_buttons/exit.png')
-    exit_option = tk.Button(root_canvas, image=exit_button, borderwidth=0, background='gray')
+    exit_option = tk.Button(root_canvas, image=exit_button, borderwidth=0, background='gray', command=root.destroy)
     exit_option.image = exit_button
     exit_option.place(anchor='c', relx=.5, rely=.7)
 
