@@ -4,8 +4,10 @@ import tkinter as tk
 
 
 class Disclaimer:
-    def __init__(self, parent):
+    def __init__(self, parent, paper_width, paper_height):
         self.parent = parent
+        self.paper_width = paper_width
+        self.paper_height = paper_height
         self.frame = None
         self.icon_path = None
         self.title_text = None
