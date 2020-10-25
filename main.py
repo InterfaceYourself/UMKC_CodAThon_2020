@@ -36,7 +36,6 @@ def main():
     center_y = back.height() // 2
 
     root_canvas.create_image(center_x, center_y, image=back)
-    root_canvas.create_image(center_x, center_y, image=paper)
     root_canvas.create_image(center_x, center_y, image=clip)
 
     EDGE_LEN = 30
@@ -50,22 +49,47 @@ def main():
     with open('assets/pages/disclaimer.json') as f:
         disclaimer_page.load_from_file(f)
 
-    patients = [
-        create_random_patient()
-        for _ in range(20)
-    ]
+    def start_encounters():
+        encounters.place_forget()
+        statistics.place_forget()
+        exit_option.place_forget()
 
-    report_widgets = [
-        PatientReport(root_canvas, patient)
-        for patient in patients
-    ]
-    for report_widget in report_widgets:
-        report_widget.create()
+        root_canvas.create_image(center_x, center_y, image=paper)
+        root_canvas.create_image(center_x, center_y, image=clip)
 
-    page_manager = PageManager(root_canvas)
-    page_manager.add_pages([report_widget.get_widget() for report_widget in report_widgets])
+        patients = [
+            create_random_patient()
+            for i in range(20)
+        ]
 
-    root.bind('<Button-1>', lambda _: page_manager.flip_page())
+        report_widgets = [
+            PatientReport(root_canvas, patient)
+            for patient in patients
+        ]
+        for report_widget in report_widgets:
+            report_widget.create()
+
+        page_manager = PageManager(root_canvas)
+        page_manager.add_pages([report_widget.get_widget() for report_widget in report_widgets])
+
+        page_manager.start()
+
+        root.bind('<Button-1>', lambda event: page_manager.flip_page())
+
+    encounter_button = tk.PhotoImage(file='assets/img/menu_buttons/encounters.png')
+    encounters = tk.Button(root_canvas, image=encounter_button, borderwidth=0, background='gray', command=start_encounters)
+    encounters.image = encounter_button
+    encounters.place(anchor='c', relx=.5, rely=.5)
+
+    statistics_button = tk.PhotoImage(file='assets/img/menu_buttons/statistics.png')
+    statistics = tk.Button(root_canvas, image=statistics_button, borderwidth=0, background='gray')
+    statistics.image = encounter_button
+    statistics.place(anchor='c', relx=.5, rely=.6)
+
+    exit_button = tk.PhotoImage(file='assets/img/menu_buttons/exit.png')
+    exit_option = tk.Button(root_canvas, image=exit_button, borderwidth=0, background='gray')
+    exit_option.image = exit_button
+    exit_option.place(anchor='c', relx=.5, rely=.7)
 
     # patient_report
 
