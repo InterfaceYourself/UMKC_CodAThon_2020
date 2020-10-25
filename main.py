@@ -5,7 +5,9 @@ import ttkthemes
 import platform
 import random
 
+from objects.patient import Patient
 from page_templates.disclaimer import Disclaimer
+from page_templates.patient_report import PatientReport
 
 
 def main():
@@ -65,30 +67,19 @@ def main():
     disclaimer_page.create()
     # disclaimer_page.get_widget().place(x=PAPER_TOP_LEFT[0], y=PAPER_TOP_LEFT[1])
 
-    patient_frame = ttk.Frame(root_canvas)
-    patient_frame.place(relx=.16, rely=.2)
+    patient = Patient(
+        picture_path='assets/img/Patients/male_3_2.png',
+        first_name='John',
+        last_name='Doe',
+        age=40,
+        sex='M',
+        marital_status='Single',
+    )
 
-    patient_image = PhotoImage(file=f'assets/img/Patients/{"male_8_3"}.png')
-    patient_portrait = ttk.Label(patient_frame, image=patient_image, background='#E7E5E8')
-    patient_portrait.grid(row=0, column=0)
-    patient_portrait.image = None
+    patient_report = PatientReport(root_canvas, patient)
+    patient_report.create()
 
-    patient_info_frame = ttk.Frame(patient_frame)
-    patient_info_frame.grid(row=0, column=1)
-
-    patient_name = ttk.Label(patient_info_frame, text=f'Name: {"patient.name"}', background='#E7E5E8', foreground='black')
-    patient_name.pack(fill='x', expand=True)
-
-    patient_age = ttk.Label(patient_info_frame, text=f'Age: {"patient.age"}', background='#E7E5E8', foreground='black')
-    patient_age.pack(fill='x', expand=True)
-
-    patient_sex = ttk.Label(patient_info_frame, text=f'Sex: {"patient.sex"}', background='#E7E5E8', foreground='black')
-    patient_sex.pack(fill='x', expand=True)
-
-    patient_status = ttk.Label(patient_info_frame, text=f'Status: {"patient.status"}', background='#E7E5E8', foreground='black')
-    patient_status.pack(fill='both', expand=True)
-
-
+    patient_report.get_widget().place(relx=.16, rely=.2)
 
     # always at bottom
     root.mainloop()
