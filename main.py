@@ -45,20 +45,28 @@ def main():
 
     root_canvas.create_image(center_x, center_y, image=back)
     root_canvas.create_image(center_x, center_y, image=paper)
-    root_canvas.create_image(center_x, center_y, image=clip)
 
-    disclaimer_page = Disclaimer(root_canvas)
+    EDGE_LEN = 30
+    PAPER_TOP_LEFT = (EDGE_LEN, EDGE_LEN)
+    PAPER_BOTTOM_RIGHT = (back.width() - EDGE_LEN, back.width() - EDGE_LEN)
+    PAPER_WIDTH = PAPER_BOTTOM_RIGHT[0] - PAPER_TOP_LEFT[0]
+    PAPER_HEIGHT = PAPER_BOTTOM_RIGHT[1] - PAPER_TOP_LEFT[1]
+
+    disclaimer_page = Disclaimer(root_canvas, PAPER_WIDTH, PAPER_HEIGHT)
 
     with open('assets/pages/disclaimer.json') as f:
         disclaimer_page.load_from_file(f)
 
     disclaimer_page.create()
-    disclaimer_page.get_widget().place(x=0, y=0)
+    disclaimer_page.get_widget().place(x=PAPER_TOP_LEFT[0], y=PAPER_TOP_LEFT[1])
+
+    # draw the clip on top of everything else
+    root_canvas.create_image(center_x, center_y, image=clip)
 
     movement_handler = MovementHandlerWithInvertedBounds(
         root,
-        top_left=(30, 30),
-        bottom_right=(back.width()-30, back.height()-30)
+        top_left=PAPER_TOP_LEFT,
+        bottom_right=PAPER_BOTTOM_RIGHT,
     )
     movement_handler.bind_callbacks()
 
