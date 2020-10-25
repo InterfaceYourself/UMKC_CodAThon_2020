@@ -64,6 +64,7 @@ def main():
         exit_option.place_forget()
 
         root_canvas.create_image(center_x, center_y, image=paper)
+        root_canvas.create_image(center_x, center_y, image=clip)
 
         patients = [
             create_random_patient()
