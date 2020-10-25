@@ -1,8 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-import random
 from widgets.patient_info import PatientInfo
-from widgets import get_symptoms
 
 
 class PatientReport:

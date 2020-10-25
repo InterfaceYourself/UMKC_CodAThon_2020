@@ -1,15 +1,12 @@
 import tkinter as tk
-from tkinter import ttk, PhotoImage
 
-import ttkthemes
-import platform
 import random
 
 from assets import names
 from objects.patient import Patient
 from page_templates.disclaimer import Disclaimer
 from page_templates.patient_report import PatientReport
-from widgets import get_symptoms
+from patient_logic import get_symptoms
 
 
 def main():
