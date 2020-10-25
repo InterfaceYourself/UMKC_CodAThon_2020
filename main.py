@@ -4,7 +4,6 @@ from tkinter import ttk
 import ttkthemes
 import platform
 
-from movement_handler import MovementHandlerWithInvertedBounds
 from page_templates.disclaimer import Disclaimer
 
 
@@ -17,13 +16,14 @@ def main():
     root.tk.call('tk', 'scaling', 2)
     # always topmost while we edit so it doesnt disappear behind the windows ever 5 seconds
     root.attributes("-topmost", True)
+    root.resizable(False, False)
 
     # remove the top bar. Even on macs...
-    root.overrideredirect(True)
-    if platform.system() == 'Darwin':
-        root.overrideredirect(False)
-    elif platform.system() == 'Windows':
-        print('Windows detected +5 to bonus rolls')
+    # root.overrideredirect(True)
+    # if platform.system() == 'Darwin':
+    #     root.overrideredirect(False)
+    # elif platform.system() == 'Windows':
+    #     print('Windows detected +5 to bonus rolls')
 
     # Load images
     back = tk.PhotoImage(file='assets/img/clipboard/clipboard.png')
@@ -62,15 +62,6 @@ def main():
 
     # draw the clip on top of everything else
     root_canvas.create_image(center_x, center_y, image=clip)
-
-    movement_handler = MovementHandlerWithInvertedBounds(
-        root,
-        top_left=PAPER_TOP_LEFT,
-        bottom_right=PAPER_BOTTOM_RIGHT,
-    )
-    movement_handler.bind_callbacks()
-
-    root.bind('<Button-2>', lambda _: root.destroy())
 
     # always at bottom
     root.mainloop()
