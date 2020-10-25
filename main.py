@@ -1,6 +1,6 @@
 import tkinter as tk
 
-
+from objects.page_manager import PageManager
 from page_templates.disclaimer import Disclaimer
 from page_templates.patient_report import PatientReport
 from patient_logic.random_patient import create_random_patient
@@ -59,12 +59,24 @@ def main():
     with open('assets/pages/disclaimer.json') as f:
         disclaimer_page.load_from_file(f)
 
-    patient = create_random_patient()
+    patients = [
+        create_random_patient()
+        for i in range(20)
+    ]
 
-    patient_report = PatientReport(root_canvas, patient)
-    patient_report.create()
+    report_widgets = [
+        PatientReport(root_canvas, patient)
+        for patient in patients
+    ]
+    for report_widget in report_widgets:
+        report_widget.create()
 
-    patient_report.get_widget().place(relx=.16, rely=.2)
+    page_manager = PageManager(root_canvas)
+    page_manager.add_pages([report_widget.get_widget() for report_widget in report_widgets])
+
+    root.bind('<Button-1>', lambda event: page_manager.flip_page())
+
+    # patient_report
 
     disclaimer_page.create()
     disclaimer_page.get_widget().place(anchor='c', relx=.5, rely=.5)
