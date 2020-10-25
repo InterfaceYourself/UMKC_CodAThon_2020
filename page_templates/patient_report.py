@@ -14,6 +14,7 @@ class PatientReport:
         self.symptoms_frame = None
         self.symptoms_frame_label = None
         self.nav_frame = None
+        self.should_get_test = tk.IntVar(value=0)
 
     def create(self):
 
@@ -42,7 +43,7 @@ class PatientReport:
         self.button1 = ttk.Button(self.parent, text='<')
         self.button1.place(relx=.08, rely=.9)
 
-        self.button2 = ttk.Button(self.parent, text='Order Test')
+        self.button2 = ttk.Checkbutton(self.parent, text='Order Test', variable=self.should_get_test)
         self.button2.place(anchor='n', relx=.5, rely=.9)
 
         self.button3 = ttk.Button(self.parent, text='>')
